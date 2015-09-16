@@ -33,7 +33,9 @@ if (Meteor.isClient) {
       // Insert a task into the collection
       Tasks.insert({
         text: text,
-        createdAt: new Date() // Current Date
+        createdAt: new Date(), // Current Date
+        owner: Meteor.userId(), // _id of logged in user
+        username: Meteor.user().username // username of logged in user
       });
 
       // Clear form
@@ -56,6 +58,7 @@ if (Meteor.isClient) {
     }
   });
 
+  // customize accounts ui package
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
   });
